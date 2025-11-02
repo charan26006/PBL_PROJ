@@ -1,34 +1,56 @@
 # 🚦 Traffic Management System (Java)
 
-A Java-based Traffic Management System that uses **Dijkstra’s Algorithm** to find the **shortest routes** between major areas in Bangalore.  
-The system adjusts travel time based on **time-of-day traffic speed limits** and includes a **graph visualization** of the city’s road network.
+A Java-based Traffic Management System that applies **Dijkstra’s Algorithm** to determine the **shortest and fastest routes** between major areas in Bangalore.  
+The system dynamically adjusts **travel time** based on the **time-of-day speed limit** and visualizes the **road network graph**.
 
 ---
 
 ## 🧩 Features
 
-- Implements **Dijkstra’s shortest path algorithm**
-- Considers **time-of-day speed limits**
-- Displays **top 3 shortest routes** between any two locations
-- Uses a **distance matrix** for route mapping
-- Visualizes the **road network graph** using `JGraphT` and `JGraphX`
+- Dijkstra’s **Shortest Path Algorithm**
+- **Time-based** traffic speed adjustments
+- Displays **Top 3 optimal routes**
+- Uses a **distance matrix representation**
+- Graph visualization using **JGraphT** and **JGraphX**
 
 ---
 
 ## 🗺️ City Distance Matrix
 
-| Locations | Majestic | MG Road | Koramangala | Whitefield | Indiranagar | Jayanagar | Banashankari | Banaswadi | Vidhana Soudha | RT Nagar |
-|------------|-----------|----------|--------------|-------------|--------------|-------------|---------------|--------------|------------|
-| **Majestic** | 0 | 6 | 0 | 0 | 12 | 0 | 22 | 0 | 7 | 0 |
-| **MG Road** | 6 | 0 | 6 | 15 | 0 | 10 | 0 | 0 | 5 | 0 |
-| **Koramangala** | 0 | 6 | 0 | 18 | 0 | 0 | 0 | 4 | 0 | 4 |
-| **Whitefield** | 0 | 15 | 18 | 0 | 0 | 0 | 0 | 0 | 0 | 16 |
-| **Indiranagar** | 12 | 0 | 0 | 0 | 0 | 6 | 0 | 0 | 19 | 0 |
-| **Jayanagar** | 0 | 10 | 0 | 0 | 6 | 0 | 0 | 0 | 0 | 8 |
-| **Banashankari** | 22 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 | 16 |
-| **Banaswadi** | 0 | 0 | 4 | 0 | 0 | 0 | 4 | 0 | 4 | 8 |
-| **Vidhana Soudha** | 7 | 5 | 0 | 0 | 19 | 0 | 0 | 4 | 0 | 8 |
-| **RT Nagar** | 0 | 0 | 0 | 16 | 0 | 8 | 16 | 8 | 8 | 0 |
+Let the locations be represented as follows:
+
+| Index | Location |
+|:------:|:----------|
+| 0 | Majestic |
+| 1 | MG Road |
+| 2 | Koramangala |
+| 3 | Whitefield |
+| 4 | Indiranagar |
+| 5 | Jayanagar |
+| 6 | Banashankari |
+| 7 | Banaswadi |
+| 8 | Vidhana Soudha |
+| 9 | RT Nagar |
+
+The **distance matrix** (in km) is:
+
+\[
+D =
+\begin{bmatrix}
+0 & 6 & 0 & 0 & 12 & 0 & 22 & 0 & 7 & 0 \\
+6 & 0 & 6 & 15 & 0 & 10 & 0 & 0 & 5 & 0 \\
+0 & 6 & 0 & 18 & 0 & 0 & 0 & 4 & 0 & 4 \\
+0 & 15 & 18 & 0 & 0 & 0 & 0 & 0 & 0 & 16 \\
+12 & 0 & 0 & 0 & 0 & 6 & 0 & 0 & 19 & 0 \\
+0 & 10 & 0 & 0 & 6 & 0 & 0 & 0 & 0 & 8 \\
+22 & 0 & 0 & 0 & 0 & 0 & 0 & 4 & 0 & 16 \\
+0 & 0 & 4 & 0 & 0 & 0 & 4 & 0 & 4 & 8 \\
+7 & 5 & 0 & 0 & 19 & 0 & 0 & 4 & 0 & 8 \\
+0 & 0 & 0 & 16 & 0 & 8 & 16 & 8 & 8 & 0
+\end{bmatrix}
+\]
+
+Each element \( D[i][j] \) represents the **distance (km)** between location *i* and *j*.
 
 ---
 
@@ -36,29 +58,28 @@ The system adjusts travel time based on **time-of-day traffic speed limits** and
 
 | Time of Day | Average Speed (km/h) |
 |--------------|----------------------|
-| Morning      | 15                   |
-| Afternoon    | 25                   |
-| Evening      | 15                   |
-| Night        | 20                   |
+| Morning      | 15 |
+| Afternoon    | 25 |
+| Evening      | 15 |
+| Night        | 20 |
 
 ---
 
 ## ⚙️ How It Works
 
-1. User enters:
-   - **Start location**
-   - **Destination location**
-   - **Time of day (morning, afternoon, evening, night)**
-2. The system maps locations to graph nodes.
-3. Dijkstra’s algorithm computes the shortest path.
-4. Speed limit (based on time of day) is used to estimate total travel time.
-5. Displays **Top 3 shortest routes** with distance and time.
+1. User inputs:
+   - **Start** and **Destination** locations  
+   - **Time of day**
+2. System maps the inputs to **graph nodes**
+3. Dijkstra’s Algorithm finds the **shortest route**
+4. Travel time is computed based on **current speed limit**
+5. Displays **top 3 optimal routes**
 
 ---
 
-## 💻 Execution Steps
+## 💻 Project Setup
 
-### 1. Clone the Repository
+### 🧾 1. Clone the Repository
 ```bash
 git clone https://github.com/<your-username>/Traffic-Management-System.git
 cd Traffic-Management-System
